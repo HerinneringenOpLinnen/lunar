@@ -1,0 +1,28 @@
+{
+    "name": "lunarphp/api",
+    "description": "Lunar Laravel e-commerce API functionality.",
+    "keywords": ["lunar", "API","laravel", "ecommerce", "e-commerce", "headless", "store", "shop", "cart"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+          "name": "Lunar",
+          "homepage": "https://lunarphp.io/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lunar\\Api\\": "src",
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lunar\\Api\\ApiServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "lunarphp/core": "self.version"
+    }
+}
