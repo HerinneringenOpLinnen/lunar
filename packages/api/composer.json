@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Lunar\\Api\\": "src",
+            "Lunar\\Api\\": "src"
         }
     },
     "extra": {

@@ -61,6 +61,7 @@
             "Lunar\\Admin\\": "packages/admin/src/",
             "Lunar\\Admin\\Database\\Factories\\": "packages/admin/database/factories",
             "Lunar\\Admin\\Database\\State\\": "packages/admin/database/state",
+            "Lunar\\Api\\": "packages/api/src",
             "Lunar\\Database\\Factories\\": "packages/core/database/factories",
             "Lunar\\Database\\Seeders\\": "packages/core/database/seeders",
             "Lunar\\Database\\State\\": "packages/core/database/state",
@@ -99,6 +100,7 @@
         "laravel": {
             "providers": [
                 "Lunar\\Stripe\\StripePaymentsServiceProvider",
+                "Lunar\\Api\\ApiServiceProvider",
                 "Lunar\\Paypal\\PaypalServiceProvider",
                 "Lunar\\Meilisearch\\MeilisearchServiceProvider",
                 "Lunar\\Search\\SearchServiceProvider",
@@ -110,6 +112,7 @@
         }
     },
     "replace": {
+        "lunarphp/api": "self.version",
         "lunarphp/core": "self.version",
         "lunarphp/lunar": "self.version",
         "lunarphp/meilisearch": "self.version",

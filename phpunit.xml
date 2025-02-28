@@ -5,6 +5,10 @@
          backupStaticProperties="false">
     <coverage/>
     <testsuites>
+        <testsuite name="api">
+            <directory suffix="Test.php">tests/api/Feature</directory>
+            <directory suffix="Test.php">tests/api/Unit</directory>
+        </testsuite>
         <testsuite name="admin">
             <directory suffix="Test.php">tests/admin/Feature</directory>
             <directory suffix="Test.php">tests/admin/Unit</directory>
