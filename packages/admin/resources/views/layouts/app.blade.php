@@ -58,7 +58,6 @@
         $livewireScriptUrl = $assertUrl;
     @endphp
     <script
-            defer
             src="{{ $livewireScriptUrl }}"
             data-csrf="{{ csrf_token() }}"
             data-update-uri="{{ \Livewire\Livewire::getUpdateUri() }}"
