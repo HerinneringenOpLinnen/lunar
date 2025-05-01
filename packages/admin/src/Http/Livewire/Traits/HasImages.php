@@ -4,8 +4,7 @@ namespace Lunar\Hub\Http\Livewire\Traits;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Livewire\FileUploadConfiguration;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Lunar\Facades\DB;
 use Spatie\Activitylog\Facades\LogBatch;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -248,7 +247,8 @@ trait HasImages
                         ->substr(0, 128)
                         ->append('.', $file->getClientOriginalExtension());
 
-                    if (FileUploadConfiguration::isUsingS3()) {
+                    $disk = config('livewire.temporary_file_upload.disk', 'local');
+                    if ($disk === 's3') {
                         $media = $owner->addMediaFromDisk($file->getRealPath())
                             ->usingFileName($filename)
                             ->toMediaCollection('images');

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Livewire\ComponentConcerns\PerformsRedirects;
 use Lunar\Hub\Http\Livewire\Traits\Notifies;
 use Lunar\Hub\Mail\ResetPasswordEmail;
 use Lunar\Hub\Models\Staff;
@@ -18,7 +17,6 @@ class PasswordReset extends Component
 {
     use AuthorizesRequests;
     use Notifies;
-    use PerformsRedirects;
 
     /**
      * The staff members email address.

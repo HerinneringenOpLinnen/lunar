@@ -3,12 +3,10 @@
 namespace Lunar\Hub\Http\Livewire\Pages\Collections;
 
 use Livewire\Component;
-use Livewire\ComponentConcerns\PerformsRedirects;
 use Lunar\Models\CollectionGroup;
 
 class CollectionGroupsIndex extends Component
 {
-    use PerformsRedirects;
 
     public $shouldSkipRender = false;
 

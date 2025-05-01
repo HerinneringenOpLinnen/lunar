@@ -5,12 +5,10 @@ namespace Lunar\Hub\Http\Livewire\Components\Authentication;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Livewire\ComponentConcerns\PerformsRedirects;
 
 class LoginForm extends Component
 {
     use AuthorizesRequests;
-    use PerformsRedirects;
 
     /**
      * The staff members email address.

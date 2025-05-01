@@ -3,7 +3,7 @@
 namespace Lunar\FieldTypes;
 
 use JsonSerializable;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Lunar\Base\FieldType;
 
 class File implements FieldType, JsonSerializable
@@ -29,7 +29,7 @@ class File implements FieldType, JsonSerializable
     }
 
     /**
-     * Create a new instance of Text field type.
+     * Create a new instance of File field type.
      *
      * @param  string  $value
      */

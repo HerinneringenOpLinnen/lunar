@@ -4,8 +4,7 @@ namespace Lunar\Hub\Http\Livewire\Components\Products\Variants;
 
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Livewire\FileUploadConfiguration;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 use Lunar\Facades\DB;
 use Lunar\Hub\Http\Livewire\Traits\CanExtendValidation;
@@ -254,7 +253,8 @@ class VariantShow extends Component
                         ->substr(0, 128)
                         ->append('.', $file->getClientOriginalExtension());
 
-                    if (FileUploadConfiguration::isUsingS3()) {
+                    $disk = config('livewire.temporary_file_upload.disk', 'local');
+                    if ($disk === 's3') {
                         $media = $owner->addMediaFromDisk($file->getRealPath())
                             ->usingFileName($filename)
                             ->toMediaCollection('images');
