@@ -44,6 +44,31 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
 
+    {{-- Load Livewire v3 deferred (after Alpine) --}}
+    @php
+        $publishedManifest = json_decode(file_get_contents(public_path('vendor/livewire/manifest.json')), true);
+        $versionedFileName = $publishedManifest['/livewire.js'];
+        $fileName = config('app.debug') ? '/livewire.js' : '/livewire.min.js';
+        $versionedFileName = "{$fileName}?id={$versionedFileName}";
+        $assertUrl = config('livewire.asset_url')
+            ?? (app('livewire')->isRunningServerless()
+                ? rtrim(config('app.asset_url'), '/')."/vendor/livewire$versionedFileName"
+                : url("vendor/livewire{$versionedFileName}")
+            );
+        $livewireScriptUrl = $assertUrl;
+    @endphp
+    <script
+            defer
+            src="{{ $livewireScriptUrl }}"
+            data-csrf="{{ csrf_token() }}"
+            data-update-uri="{{ \Livewire\Livewire::getUpdateUri() }}"
+            data-navigate-once="true"
+    ></script>
+    {{-- Shim old Livewire-2 global so window.livewire plugins still work --}}
+    <script>
+        window.livewire = window.Livewire;
+    </script>
+
     @livewireStyles
 </head>
 
@@ -96,31 +121,6 @@
 </div>
 
 <x-hub::notification/>
-
-{{-- Load Livewire v3 deferred (after Alpine) --}}
-@php
-$publishedManifest = json_decode(file_get_contents(public_path('vendor/livewire/manifest.json')), true);
-$versionedFileName = $publishedManifest['/livewire.js'];
-$fileName = config('app.debug') ? '/livewire.js' : '/livewire.min.js';
-$versionedFileName = "{$fileName}?id={$versionedFileName}";
-$assertUrl = config('livewire.asset_url')
-    ?? (app('livewire')->isRunningServerless()
-        ? rtrim(config('app.asset_url'), '/')."/vendor/livewire$versionedFileName"
-        : url("vendor/livewire{$versionedFileName}")
-    );
-$livewireScriptUrl = $assertUrl;
- @endphp
-<script
-        defer
-        src="{{ $livewireScriptUrl }}"
-        data-csrf="{{ csrf_token() }}"
-        data-update-uri="{{ \Livewire\Livewire::getUpdateUri() }}"
-        data-navigate-once="true"
-></script>
-{{-- Shim old Livewire-2 global so window.livewire plugins still work --}}
-<script>
-    window.livewire = window.Livewire;
-</script>
 
 @if ($scripts = \Lunar\Hub\LunarHub::scripts())
     @foreach ($scripts as $asset)
