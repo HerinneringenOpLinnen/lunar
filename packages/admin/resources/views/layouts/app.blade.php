@@ -112,6 +112,7 @@
 
 @if ($scripts = \Lunar\Hub\LunarHub::scripts())
     @foreach ($scripts as $asset)
+        @dump($asset)
         <script src="{!! $asset->url() !!}"></script>
     @endforeach
 @endif
