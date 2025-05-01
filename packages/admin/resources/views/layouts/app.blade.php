@@ -35,9 +35,12 @@
         }
     </style>
 
-    <!-- Alpine core first -->
+    {{-- ApexCharts must be global before any Alpine init that uses it --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    {{-- Alpine core first --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.8.1/dist/cdn.min.js"></script>
-    <!-- then Alpine plugins -->
+    {{-- then Alpine plugins --}}
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
 
@@ -94,8 +97,14 @@
 
 <x-hub::notification/>
 
-{{-- Load Livewire immediately so window.Livewire exists for plugins --}}
-<livewire:scripts />
+{{-- Manually include Livewire *after* Alpine --}}
+<script
+        defer
+        src="{{ asset('vendor/livewire/livewire.js') }}?id={{ \Livewire\Livewire::manifest()['app.js'] ?? time() }}"
+        data-csrf="{{ csrf_token() }}"
+        data-update-uri="{{ route('livewire.message') }}"
+        data-navigate-once="true"
+></script>
 {{-- Shim old Livewire-2 global so window.livewire plugins still work --}}
 <script>
     window.livewire = window.Livewire;
