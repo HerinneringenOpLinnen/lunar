@@ -28,7 +28,12 @@
 
     <script></script>
 
-    <livewire:scripts defer />
+    {{-- Load Livewire immediately so window.Livewire exists for plugins --}}
+    <livewire:scripts />
+    {{-- Shim old Livewire-2 global so window.livewire plugins still work --}}
+    <script>
+        window.livewire = window.Livewire;
+    </script>
 </body>
 
 </html>

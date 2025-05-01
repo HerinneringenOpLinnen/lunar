@@ -94,7 +94,12 @@
 
 <x-hub::notification/>
 
-<livewire:scripts defer />
+{{-- Load Livewire immediately so window.Livewire exists for plugins --}}
+<livewire:scripts />
+{{-- Shim old Livewire-2 global so window.livewire plugins still work --}}
+<script>
+    window.livewire = window.Livewire;
+</script>
 
 @if ($scripts = \Lunar\Hub\LunarHub::scripts())
     @foreach ($scripts as $asset)
@@ -102,7 +107,8 @@
     @endforeach
 @endif
 
-<script src="{{ asset('vendor/lunar/admin-hub/app.js') }}"></script>
+{{-- Defer app.js so it runs after Livewire & Alpine/plugins have initialized --}}
+<script defer src="{{ asset('vendor/lunar/admin-hub/app.js') }}"></script>
 </body>
 
 </html>
