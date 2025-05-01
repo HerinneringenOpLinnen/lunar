@@ -110,13 +110,11 @@
     window.livewire = window.Livewire;
 </script>
 
-@if ($scripts = \Lunar\Hub\LunarHub::scripts())
-    @foreach ($scripts as $asset)
-        @if(!str_contains('livewire/livewire.js', $asset->url()))
-            <script src="{!! $asset->url() !!}"></script>
-        @endif
-    @endforeach
-@endif
+{{--@if ($scripts = \Lunar\Hub\LunarHub::scripts())--}}
+{{--    @foreach ($scripts as $asset)--}}
+{{--        <script src="{!! $asset->url() !!}"></script>--}}
+{{--    @endforeach--}}
+{{--@endif--}}
 
 {{-- Defer app.js so it runs after Livewire & Alpine/plugins have initialized --}}
 <script defer src="{{ asset('vendor/lunar/admin-hub/app.js') }}"></script>
