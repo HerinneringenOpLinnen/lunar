@@ -28,8 +28,14 @@
 
     <script></script>
 
-    {{-- Load Livewire immediately so window.Livewire exists for plugins --}}
-    <livewire:scripts />
+    {{-- Load Livewire v3 deferred (after Alpine) --}}
+    <script
+            defer
+            src="{{ asset('vendor/livewire/livewire.js') }}"
+            data-csrf="{{ csrf_token() }}"
+            data-update-uri="/livewire/update"
+            data-navigate-once="true"
+    ></script>
     {{-- Shim old Livewire-2 global so window.livewire plugins still work --}}
     <script>
         window.livewire = window.Livewire;

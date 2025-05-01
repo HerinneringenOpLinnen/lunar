@@ -97,7 +97,7 @@
 
 <x-hub::notification/>
 
-{{-- Load Livewire v3 *after* Alpine --}}
+{{-- Load Livewire v3 deferred (after Alpine) --}}
 <script
         defer
         src="{{ asset('vendor/livewire/livewire.js') }}"
