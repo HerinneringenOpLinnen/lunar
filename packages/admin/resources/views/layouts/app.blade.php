@@ -98,11 +98,23 @@
 <x-hub::notification/>
 
 {{-- Load Livewire v3 deferred (after Alpine) --}}
+@php
+$publishedManifest = json_decode(file_get_contents(public_path('vendor/livewire/manifest.json')), true);
+$versionedFileName = $publishedManifest['/livewire.js'];
+$fileName = config('app.debug') ? '/livewire.js' : '/livewire.min.js';
+$versionedFileName = "{$fileName}?id={$versionedFileName}";
+$assertUrl = config('livewire.asset_url')
+    ?? (app('livewire')->isRunningServerless()
+        ? rtrim(config('app.asset_url'), '/')."/vendor/livewire$versionedFileName"
+        : url("vendor/livewire{$versionedFileName}")
+    );
+$livewireScriptUrl = $assertUrl;
+ @endphp
 <script
         defer
-        src="{{ asset('vendor/livewire/livewire.js') }}"
+        src="{{ $livewireScriptUrl }}"
         data-csrf="{{ csrf_token() }}"
-        data-update-uri="/livewire/update"
+        data-update-uri="{{ \Livewire\Livewire::getUpdateUri() }}"
         data-navigate-once="true"
 ></script>
 {{-- Shim old Livewire-2 global so window.livewire plugins still work --}}
