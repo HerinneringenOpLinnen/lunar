@@ -39,10 +39,10 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     
     {{-- Alpine core first --}}
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.8.1/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.8.1/dist/cdn.min.js"></script>
     {{-- then Alpine plugins --}}
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
 
     {{-- Load Livewire v3 deferred (after Alpine) --}}
     @php
@@ -58,6 +58,7 @@
         $livewireScriptUrl = $assertUrl;
     @endphp
     <script
+            defer
             src="{{ $livewireScriptUrl }}"
             data-csrf="{{ csrf_token() }}"
             data-update-uri="{{ \Livewire\Livewire::getUpdateUri() }}"
