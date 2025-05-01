@@ -97,8 +97,14 @@
 
 <x-hub::notification/>
 
-{{-- include Livewire *after* Alpine --}}
-<livewire:scripts defer />
+{{-- Load Livewire v3 *after* Alpine --}}
+<script
+        defer
+        src="{{ asset('vendor/livewire/livewire.js') }} }}"
+        data-csrf="{{ csrf_token() }}"
+        data-update-uri="/livewire/update"
+        data-navigate-once="true"
+></script>
 {{-- Shim old Livewire-2 global so window.livewire plugins still work --}}
 <script>
     window.livewire = window.Livewire;
