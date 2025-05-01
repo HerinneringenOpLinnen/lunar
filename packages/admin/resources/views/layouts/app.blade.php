@@ -112,8 +112,9 @@
 
 @if ($scripts = \Lunar\Hub\LunarHub::scripts())
     @foreach ($scripts as $asset)
-        @dump($asset)
-        <script src="{!! $asset->url() !!}"></script>
+        @if(!str_contains('livewire/livewire.js', $asset->url()))
+            <script src="{!! $asset->url() !!}"></script>
+        @endif
     @endforeach
 @endif
 
