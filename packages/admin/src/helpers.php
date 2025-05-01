@@ -12,7 +12,7 @@ if (! function_exists('max_upload_filesize')) {
 }
 
 if (! function_exists('get_validation')) {
-    function get_validation($reference, $field, $defaults = [], Model $model = null)
+    function get_validation($reference, $field, $defaults = [], Model|null $model = null)
     {
         $config = config("lunar-hub.{$reference}.{$field}", []);
 
@@ -35,7 +35,7 @@ if (! function_exists('get_validation')) {
 }
 
 if (! function_exists('db_date')) {
-    function db_date($column, $format, $alias = null)
+    function db_date($column, $format, string|null $alias = null)
     {
         $connection = config('database.default');
 
@@ -81,7 +81,7 @@ if (! function_exists('impersonate_link')) {
 }
 
 if (! function_exists('lang')) {
-    function lang($key, $replace = [], $locale = null, $prefix = 'adminhub::', $lower = false)
+    function lang($key, $replace = [], string|null $locale = null, $prefix = 'adminhub::', $lower = false)
     {
         $key = $prefix.$key;
 
