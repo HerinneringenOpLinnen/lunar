@@ -117,7 +117,7 @@
 {{--@endif--}}
 
 {{-- Defer app.js so it runs after Livewire & Alpine/plugins have initialized --}}
-<script defer src="{{ asset('vendor/lunar/admin-hub/app.js') }}"></script>
+{{--<script defer src="{{ asset('vendor/lunar/admin-hub/app.js') }}"></script>--}}
 </body>
 
 </html>
