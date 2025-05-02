@@ -25,6 +25,8 @@
     <script></script>
 
     @livewireScripts
+    {{-- Shim for legacy plugins expecting window.livewire --}}
+    <script>window.livewire = window.Livewire;</script>
 </body>
 
 </html>

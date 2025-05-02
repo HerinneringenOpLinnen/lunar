@@ -89,6 +89,8 @@
 <x-hub::notification/>
 
 @livewireScripts
+{{-- Shim for legacy plugins expecting window.livewire --}}
+<script>window.livewire = window.Livewire;</script>
 
 @if ($scripts = \Lunar\Hub\LunarHub::scripts())
     @foreach ($scripts as $asset)
