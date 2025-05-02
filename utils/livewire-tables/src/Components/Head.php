@@ -34,6 +34,11 @@ class Head extends Component
 
     public $field;
 
+    public function getName(): string
+    {
+        return 'lunar.livewire-tables.components.head';
+    }
+
     public function sort()
     {
         $this->sortField = $this->field;
