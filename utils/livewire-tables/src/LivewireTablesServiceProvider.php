@@ -3,6 +3,7 @@
 namespace Lunar\LivewireTables;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Lunar\LivewireTables\Components\Actions\BulkAction;
@@ -35,6 +36,7 @@ class LivewireTablesServiceProvider extends ServiceProvider
         ];
 
         foreach ($components as $component) {
+            Log::debug('Registering Livewire component: '. $component . ' with name: '. (new $component)->getName());
             Livewire::component((new $component)->getName(), $component);
         }
 
