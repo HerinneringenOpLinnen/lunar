@@ -10,6 +10,7 @@ use Livewire\WithFileUploads;
 use Lunar\Facades\DB;
 use Lunar\FieldTypes\TranslatedText;
 use Lunar\Hub\Http\Livewire\Traits\HasAvailability;
+use Lunar\Hub\Http\Livewire\Traits\HasErrorHelper;
 use Lunar\Hub\Http\Livewire\Traits\HasImages;
 use Lunar\Hub\Http\Livewire\Traits\HasUrls;
 use Lunar\Hub\Http\Livewire\Traits\Notifies;
@@ -24,6 +25,7 @@ use Lunar\Models\Tag;
 class CollectionShow extends Component
 {
     use HasAvailability;
+    use HasErrorHelper;
     use HasImages;
     use HasUrls;
     use Notifies;
@@ -478,36 +480,36 @@ class CollectionShow extends Component
             [
                 'title' => __('adminhub::menu.attributes'),
                 'id' => 'attributes',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'attributeMapping.*',
                 ]),
             ],
             [
                 'title' => __('adminhub::menu.images'),
                 'id' => 'images',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'newImages.*',
                 ]),
             ],
             [
                 'title' => __('adminhub::menu.availability'),
                 'id' => 'availability',
-                'has_errors' => $this->errorBag->hasAny([]),
+                'has_errors' => $this->hasAnyError([]),
             ],
             [
                 'title' => __('adminhub::menu.urls'),
                 'id' => 'urls',
-                'has_errors' => $this->errorBag->hasAny([]),
+                'has_errors' => $this->hasAnyError([]),
             ],
             [
                 'title' => __('adminhub::menu.products'),
                 'id' => 'products',
-                'has_errors' => $this->errorBag->hasAny([]),
+                'has_errors' => $this->hasAnyError([]),
             ],
             [
                 'title' => __('adminhub::menu.collections'),
                 'id' => 'collections',
-                'has_errors' => $this->errorBag->hasAny([]),
+                'has_errors' => $this->hasAnyError([]),
             ],
         ]);
     }

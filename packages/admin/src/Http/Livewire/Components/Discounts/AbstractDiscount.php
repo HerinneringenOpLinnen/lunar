@@ -11,6 +11,7 @@ use Lunar\Facades\DB;
 use Lunar\Facades\Discounts;
 use Lunar\Hub\Base\DiscountTypesInterface;
 use Lunar\Hub\Http\Livewire\Traits\HasAvailability;
+use Lunar\Hub\Http\Livewire\Traits\HasErrorHelper;
 use Lunar\Hub\Http\Livewire\Traits\Notifies;
 use Lunar\Hub\Http\Livewire\Traits\WithLanguages;
 use Lunar\Models\Brand;
@@ -23,6 +24,7 @@ use Lunar\Models\ProductVariant;
 abstract class AbstractDiscount extends Component
 {
     use HasAvailability;
+    use HasErrorHelper;
     use Notifies;
     use WithLanguages;
 
@@ -470,7 +472,7 @@ abstract class AbstractDiscount extends Component
             [
                 'title' => __('adminhub::menu.product.basic-information'),
                 'id' => 'basic-information',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'discount.name',
                     'discount.handle',
                     'discount.starts_at',
@@ -490,7 +492,7 @@ abstract class AbstractDiscount extends Component
             [
                 'title' => 'Conditions',
                 'id' => 'conditions',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'minPrices.*.price',
                     'discount.max_uses',
                     'discount.max_uses_per_user',
@@ -499,7 +501,7 @@ abstract class AbstractDiscount extends Component
             [
                 'title' => 'Discount Type',
                 'id' => 'type',
-                'has_errors' => $this->errorBag->hasAny(array_merge(
+                'has_errors' => $this->hasAnyError(array_merge(
                     $this->getDiscountComponent()->rules(),
                     ['selectedConditions', 'selectedRewards']
                 )),

@@ -11,6 +11,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 trait HasImages
 {
+    use HasErrorHelper;
+
     /**
      * New images we want to upload.
      *
@@ -143,7 +145,7 @@ trait HasImages
             return;
         }
 
-        if ($this->errorBag->count()) {
+        if ($this->hasErrors()) {
             unset($this->imageUploadQueue[0]);
 
             return;

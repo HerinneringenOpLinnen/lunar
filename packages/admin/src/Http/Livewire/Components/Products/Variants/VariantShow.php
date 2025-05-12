@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 use Lunar\Facades\DB;
 use Lunar\Hub\Http\Livewire\Traits\CanExtendValidation;
 use Lunar\Hub\Http\Livewire\Traits\HasDimensions;
+use Lunar\Hub\Http\Livewire\Traits\HasErrorHelper;
 use Lunar\Hub\Http\Livewire\Traits\HasImages;
 use Lunar\Hub\Http\Livewire\Traits\HasPrices;
 use Lunar\Hub\Http\Livewire\Traits\HasSlots;
@@ -28,6 +29,7 @@ class VariantShow extends Component
 {
     use CanExtendValidation;
     use HasDimensions;
+    use HasErrorHelper;
     use HasImages;
     use HasPrices;
     use HasSlots;
@@ -122,7 +124,7 @@ class VariantShow extends Component
      */
     public function dehydrate()
     {
-        if ($this->errorBag->count()) {
+        if ($this->hasErrors()) {
             $this->notify(
                 __('adminhub::validation.generic'),
                 level: 'error'

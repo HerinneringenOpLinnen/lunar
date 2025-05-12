@@ -11,6 +11,7 @@ use Lunar\Facades\DB;
 use Lunar\Hub\Http\Livewire\Traits\CanExtendValidation;
 use Lunar\Hub\Http\Livewire\Traits\HasAvailability;
 use Lunar\Hub\Http\Livewire\Traits\HasDimensions;
+use Lunar\Hub\Http\Livewire\Traits\HasErrorHelper;
 use Lunar\Hub\Http\Livewire\Traits\HasImages;
 use Lunar\Hub\Http\Livewire\Traits\HasPrices;
 use Lunar\Hub\Http\Livewire\Traits\HasSlots;
@@ -35,6 +36,7 @@ abstract class AbstractProduct extends Component
     use CanExtendValidation;
     use HasAvailability;
     use HasDimensions;
+    use HasErrorHelper;
     use HasImages;
     use HasPrices;
     use HasSlots;
@@ -850,7 +852,7 @@ abstract class AbstractProduct extends Component
             [
                 'title' => __('adminhub::menu.product.basic-information'),
                 'id' => 'basic-information',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'product.brand_id',
                     'product.product_type_id',
                 ]),
@@ -858,21 +860,21 @@ abstract class AbstractProduct extends Component
             [
                 'title' => __('adminhub::menu.product.attributes'),
                 'id' => 'attributes',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'attributeMapping.*',
                 ]),
             ],
             [
                 'title' => __('adminhub::menu.product.images'),
                 'id' => 'images',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'newImages.*',
                 ]),
             ],
             [
                 'title' => __('adminhub::menu.product.availability'),
                 'id' => 'availability',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'availability',
                 ]),
             ],
@@ -880,13 +882,13 @@ abstract class AbstractProduct extends Component
                 'title' => __('adminhub::menu.product.variants'),
                 'id' => 'variants',
                 'hidden' => $this->variantsDisabled,
-                'has_errors' => $this->errorBag->hasAny([]),
+                'has_errors' => $this->hasAnyError([]),
             ],
             [
                 'title' => __('adminhub::menu.product.pricing'),
                 'id' => 'pricing',
                 'hidden' => $this->getVariantsCount() > 1,
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'variant.min_quantity',
                     'basePrices.*',
                     'customerGroupPrices.*',
@@ -897,7 +899,7 @@ abstract class AbstractProduct extends Component
                 'title' => __('adminhub::menu.product.identifiers'),
                 'id' => 'identifiers',
                 'hidden' => $this->getVariantsCount() > 1,
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'variant.sku',
                     'variant.gtin',
                     'variant.mpn',
@@ -909,7 +911,7 @@ abstract class AbstractProduct extends Component
                 'id' => 'inventory',
                 'error_check' => [],
                 'hidden' => $this->getVariantsCount() > 1,
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'variant.stock',
                     'variant.backorder',
                     'variant.purchasable',
@@ -919,7 +921,7 @@ abstract class AbstractProduct extends Component
                 'title' => __('adminhub::menu.product.shipping'),
                 'id' => 'shipping',
                 'hidden' => $this->getVariantsCount() > 1,
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'variant.shippable',
                     'variant.length_value',
                     'variant.length_unit',
@@ -936,7 +938,7 @@ abstract class AbstractProduct extends Component
             [
                 'title' => __('adminhub::menu.product.urls'),
                 'id' => 'urls',
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'urls',
                     'urls.*',
                 ]),
@@ -945,7 +947,7 @@ abstract class AbstractProduct extends Component
                 'title' => __('adminhub::menu.product.associations'),
                 'id' => 'associations',
                 'hidden' => false,
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'associations',
                 ]),
             ],
@@ -953,7 +955,7 @@ abstract class AbstractProduct extends Component
                 'title' => __('adminhub::menu.product.collections'),
                 'id' => 'collections',
                 'hidden' => false,
-                'has_errors' => $this->errorBag->hasAny([
+                'has_errors' => $this->hasAnyError([
                     'collections',
                 ]),
             ],
